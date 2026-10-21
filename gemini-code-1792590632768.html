@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>國小五年級數學上學期互動總複習樂園｜1~5單元圖解與闖關</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-scale: 1;
+    }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', sans-serif;
+      background-color: #FFFDF7;
+      color: #292524;
+      overflow-x: hidden;
+    }
+    .scalable-text {
+      font-size: calc(1rem * var(--font-scale));
+      line-height: calc(1.75rem * var(--font-scale));
+    }
+    .scalable-title {
+      font-size: calc(1.25rem * var(--font-scale));
+      line-height: calc(1.85rem * var(--font-scale));
+    }
+    .warm-card {
+      background-color: #FFFFFF;
+      border: 2px solid #FDE68A;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 20px -4px rgba(217, 119, 6, 0.08), 0 4px 8px -2px rgba(217, 119, 6, 0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .warm-card:hover {
+      box-shadow: 0 12px 24px -4px rgba(217, 119, 6, 0.13);
+    }
+    .fraction-box {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      vertical-align: middle;
+      margin: 0 0.25rem;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+    .fraction-box .num {
+      border-bottom: 2px solid currentColor;
+      padding: 0 0.3rem 0.1rem;
+    }
+    .fraction-box .den {
+      padding: 0.1rem 0.3rem 0;
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FEF3C7;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #F59E0B;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-amber-200 selection:text-amber-950">
+
+  <!-- 頂部溫馨暖色導覽列 -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b-2 border-amber-200 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <!-- 網站標題 -->
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white text-2xl shadow-sm font-black">
+          數
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-lg sm:text-xl font-black text-amber-950 tracking-tight">
+              五年級數學上學期互動總複習樂園
+            </h1>
+            <span class="hidden md:inline-block text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">
+              第 1～5 單元適性圖解版
+            </span>
+          </div>
+          <p class="text-xs text-stone-500 hidden sm:block">視覺化概念圖解・重點口訣・步驟拆解・即時互動測驗</p>
+        </div>
+      </div>
+
+      <!-- 星星計分與字級調整 -->
+      <div class="flex items-center gap-2">
+        <div class="flex items-center gap-1.5 bg-amber-50 border-2 border-amber-300 px-3.5 py-1 rounded-full text-amber-900 font-black text-sm shadow-inner" title="答對測驗累積的星星">
+          <span class="text-base">⭐</span>
+          <span id="starCount">0</span>
+          <span class="text-xs text-amber-700 font-bold">/ 25 顆星</span>
+        </div>
+        <button id="btnFontScale" type="button" class="flex items-center gap-1 px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-orange-50 hover:bg-orange-100 text-orange-900 border-2 border-orange-200 transition">
+          <span>🔍</span>
+          <span id="fontScaleLabel">字體：標準</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 第 1-5 單元切換頁籤列 -->
+    <div class="bg-gradient-to-r from-amber-50/90 via-orange-50/90 to-amber-50/90 border-t border-amber-100 px-4 py-2.5">
+      <nav id="unitNav" class="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-5 gap-2">
+        <!-- 由 JavaScript 動態生成 -->
+      </nav>
+    </div>
+  </header>
+
+  <!-- 主要內容容器 -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-6 space-y-6">
+
+    <!-- 單元橫幅與快速跳轉錨點 -->
+    <section id="unitHero" class="bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600 rounded-3xl p-5 sm:p-7 text-white shadow-md">
+      <!-- 由 JavaScript 動態生成 -->
+    </section>
+
+    <!-- 四大核心區塊快速導覽列 -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 bg-amber-50/80 p-2 rounded-2xl border border-amber-200">
+      <a href="#sec-concept" class="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white hover:bg-amber-100 text-amber-950 font-bold text-xs sm:text-sm border border-amber-200 shadow-sm transition">
+        <span>📖</span><span>1. 核心概念與圖解</span>
+      </a>
+      <a href="#sec-formula" class="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white hover:bg-amber-100 text-amber-950 font-bold text-xs sm:text-sm border border-amber-200 shadow-sm transition">
+        <span>🔑</span><span>2. 必背公式與口訣</span>
+      </a>
+      <a href="#sec-examples" class="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white hover:bg-amber-100 text-amber-950 font-bold text-xs sm:text-sm border border-amber-200 shadow-sm transition">
+        <span>✍️</span><span>3. 經典範例拆解</span>
+      </a>
+      <a href="#sec-quiz" class="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white hover:bg-amber-100 text-amber-950 font-bold text-xs sm:text-sm border border-amber-200 shadow-sm transition">
+        <span>🏆</span><span>4. 單元自我小考驗</span>
+      </a>
+    </div>
+
+    <!-- 1. 📖 核心概念與圖解 -->
+    <section id="sec-concept" class="warm-card p-5 sm:p-7 scroll-mt-36">
+      <div class="flex items-center gap-2.5 pb-4 mb-5 border-b-2 border-amber-100">
+        <span class="w-9 h-9 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center text-xl">📖</span>
+        <div>
+          <h2 class="text-lg sm:text-xl font-black text-amber-950">核心概念與視覺化圖解</h2>
+          <p class="text-xs text-stone-500">看圖理解原理，把抽象的數學變簡單！</p>
+        </div>
+      </div>
+      <div id="conceptContainer" class="space-y-6">
+        <!-- 由 JavaScript 動態渲染 -->
+      </div>
+    </section>
+
+    <!-- 2. 🔑 必背公式與重點口訣 -->
+    <section id="sec-formula" class="warm-card p-5 sm:p-7 scroll-mt-36">
+      <div class="flex items-center gap-2.5 pb-4 mb-5 border-b-2 border-amber-100">
+        <span class="w-9 h-9 rounded-xl bg-orange-100 text-orange-800 flex items-center justify-center text-xl">🔑</span>
+        <div>
+          <h2 class="text-lg sm:text-xl font-black text-amber-950">必背公式與重點口訣</h2>
+          <p class="text-xs text-stone-500">黃金解題心法，抓準關鍵字不掉入陷阱！</p>
+        </div>
+      </div>
+      <div id="formulaContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- 由 JavaScript 動態渲染 -->
+      </div>
+    </section>
+
+    <!-- 3. ✍️ 經典範例與步驟拆解 -->
+    <section id="sec-examples" class="warm-card p-5 sm:p-7 scroll-mt-36">
+      <div class="flex items-center justify-between flex-wrap gap-2 pb-4 mb-5 border-b-2 border-amber-100">
+        <div class="flex items-center gap-2.5">
+          <span class="w-9 h-9 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center text-xl">✍️</span>
+          <div>
+            <h2 class="text-lg sm:text-xl font-black text-amber-950">經典範例與步驟拆解</h2>
+            <p class="text-xs text-stone-500">跟著 Step 1、Step 2、Step 3 一步步拆解思考過程！</p>
+          </div>
+        </div>
+        <div id="exampleTabs" class="flex flex-wrap gap-1.5">
+          <!-- 範例切換按鈕 -->
+        </div>
+      </div>
+      <div id="exampleContainer">
+        <!-- 由 JavaScript 動態渲染 -->
+      </div>
+    </section>
+
+    <!-- 4. 🏆 單元自我小考驗 (5題互動選擇題) -->
+    <section id="sec-quiz" class="warm-card p-5 sm:p-7 bg-gradient-to-b from-white to-amber-50/40 scroll-mt-36">
+      <div class="flex items-center justify-between flex-wrap gap-2 pb-4 mb-5 border-b-2 border-amber-200">
+        <div class="flex items-center gap-2.5">
+          <span class="w-9 h-9 rounded-xl bg-orange-500 text-white flex items-center justify-center text-xl shadow-sm">🏆</span>
+          <div>
+            <h2 class="text-lg sm:text-xl font-black text-amber-950">單元自我小考驗（共 5 題）</h2>
+            <p class="text-xs text-stone-600">點選選項立即對答案，每題答對可獲得 1 顆星星 ⭐</p>
+          </div>
+        </div>
+        <button onclick="resetUnitQuiz()" class="text-xs font-bold px-3 py-1.5 rounded-xl bg-white hover:bg-amber-100 text-amber-900 border border-amber-300 transition shadow-sm">
+          🔄 重新挑戰本單元測驗
+        </button>
+      </div>
+      <div id="quizContainer" class="space-y-5">
+        <!-- 由 JavaScript 動態渲染 -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 頁尾 -->
+  <footer class="bg-amber-100/70 border-t-2 border-amber-200 text-amber-950 py-5 px-4 text-center text-xs sm:text-sm font-bold mt-8">
+    國小五年級數學上學期互動總複習樂園 ‧ 依據五上第 1～5 單元課程教材編製
+  </footer>
+
+  <!-- JavaScript 完整教材資料庫與互動邏輯 -->
+  <script>
+    // 分數 HTML 輔助函式
+    function frac(n, d) {
+      return `<span class="fraction-box"><span class="num">${n}</span><span class="den">${d}</span></span>`;
+    }
+    function mixedFrac(w, n, d) {
+      return `<span class="font-extrabold mr-0.5">${w}</span>${frac(n, d)}`;
+    }
+
+    // 五大單元完整教材資料庫
+    const UNITS_DATA = [
+      // ==================== 第 1 單元：折線圖 ====================
+      {
+        id: 1,
+        code: "第 1 單元",
+        name: "折線圖",
+        icon: "📈",
+        tagline: "報讀疊加型長條圖、雙折線圖、辨識變化趨勢與省略符號運用",
+        summary: "學會同時比較兩組資料的疊加型長條圖與雙折線圖，觀察折線陡緩判斷數量變化快慢，並運用波浪省略符號「～」繪製折線圖。",
+        concepts: [
+          {
+            badge: "概念 1：疊加型長條圖 vs 雙折線圖",
+            title: "兩組資料一起看，總量與變化趨勢一目了然！",
+            desc: "將兩組資料（例如：全票與半票、臺中與臺南雨量）畫在同一張統計圖中，可以快速比較差異。疊加型長條圖適合看「各月總人數」（直接看整條柱子最高處）；複雜折線圖適合看「隨時間上升或下降的趨勢」。",
+            keyPoints: [
+              "【疊加型長條圖】整條長條的總高度 ＝ 兩項資料加起來的總和（例：半票＋全票）。",
+              "【雙折線圖】先看圖例顏色（例：藍線代表臺中、橘線代表臺南），兩點距離越遠代表當月相差越多！",
+              "【兩線交叉點】若兩條折線在某個時間點重合相交，代表那時候兩組資料的「數量一樣多」。"
+            ],
+            visualHtml: `
+              <div class="bg-amber-50/70 border-2 border-amber-200 rounded-2xl p-4">
+                <div class="text-xs font-black text-amber-900 mb-2 flex items-center justify-between">
+                  <span>📊 互動圖解：小穎與紹婷一～六年級體重折線圖（含波浪省略符號）</span>
+                  <span class="px-2 py-0.5 rounded bg-orange-100 text-orange-800">單位：公斤</span>
+                </div>
+                <svg viewBox="0 0 420 210" class="w-full h-auto bg-white rounded-xl border border-amber-200 p-2">
+                  <!-- 網格線 -->
+                  <g stroke="#FEF3C7" stroke-width="1">
+                    <line x1="50" y1="25" x2="390" y2="25" />
+                    <line x1="50" y1="55" x2="390" y2="55" />
+                    <line x1="50" y1="85" x2="390" y2="85" />
+                    <line x1="50" y1="115" x2="390" y2="115" />
+                    <line x1="50" y1="145" x2="390" y2="145" />
+                  </g>
+                  <!-- 座標軸 -->
+                  <line x1="50" y1="15" x2="50" y2="180" stroke="#78350F" stroke-width="2" />
+                  <line x1="50" y1="180" x2="400" y2="180" stroke="#78350F" stroke-width="2" />
+                  <!-- Y軸刻度 -->
+                  <g font-size="10" fill="#78350F" text-anchor="end" font-weight="bold">
+                    <text x="44" y="29">40</text>
+                    <text x="44" y="59">35</text>
+                    <text x="44" y="89">30</text>
+                    <text x="44" y="119">25</text>
+                    <text x="44" y="149">20</text>
+                    <text x="44" y="183">0</text>
+                  </g>
+                  <!-- 波浪省略符號 -->
+                  <path d="M 42 162 Q 55 156 68 162 T 94 162 T 120 162 T 146 162 T 172 162 T 198 162 T 224 162 T 250 162 T 276 162 T 302 162 T 328 162 T 354 162 T 380 162" fill="none" stroke="#D97706" stroke-width="2" />
+                  <rect x="295" y="150" width="98" height="18" rx="4" fill="#FEF3C7" stroke="#F59E0B" />
+                  <text x="344" y="162" font-size="9" fill="#92400E" text-anchor="middle" font-weight="bold">〰 省略 1~19 公斤</text>
+                  <!-- X軸標籤 -->
+                  <g font-size="10" fill="#78350F" text-anchor="middle" font-weight="bold">
+                    <text x="80" y="196">一年級</text>
+                    <text x="135" y="196">二年級</text>
+                    <text x="190" y="196">三年級</text>
+                    <text x="245" y="196">四年級</text>
+                    <text x="300" y="196">五年級</text>
+                    <text x="355" y="196">六年級</text>
+                  </g>
+                  <!-- 紹婷折線 (綠線: 22, 26, 28, 30, 32, 36) -->
+                  <polyline fill="none" stroke="#0D9488" stroke-width="2.5" stroke-dasharray="4,2" points="80,133 135,109 190,97 245,85 300,73 355,49" />
+                  <!-- 小穎折線 (橘紅線: 20, 22, 24, 30, 34, 38) -->
+                  <polyline fill="none" stroke="#EA580C" stroke-width="3" points="80,145 135,133 190,121 245,85 300,61 355,37" />
+                  <!-- 數據點 -->
+                  <g fill="#EA580C">
+                    <circle cx="80" cy="145" r="4" /><text x="75" y="140" font-size="9" font-weight="bold">20</text>
+                    <circle cx="135" cy="133" r="4" /><text x="135" y="146" font-size="9" font-weight="bold">22</text>
+                    <circle cx="190" cy="121" r="4" /><text x="195" y="132" font-size="9" font-weight="bold">24</text>
+                    <circle cx="245" cy="85" r="5" fill="#DC2626" />
+                    <circle cx="300" cy="61" r="4" /><text x="295" y="54" font-size="9" font-weight="bold">34</text>
+                    <circle cx="355" cy="37" r="4" /><text x="355" y="30" font-size="9" font-weight="bold">38</text>
+                  </g>
+                  <!-- 標註重點 -->
+                  <rect x="195" y="45" width="96" height="20" rx="5" fill="#FEE2E2" stroke="#EF4444" />
+                  <text x="243" y="58" font-size="9" fill="#991B1B" text-anchor="middle" font-weight="bold">四年級同重(30kg)</text>
+                  <text x="215" y="112" font-size="9" fill="#C2410C" font-weight="bold">最陡(+6kg)</text>
+                  <!-- 圖例 -->
+                  <rect x="60" y="18" width="115" height="22" rx="4" fill="#FFFBEB" stroke="#FDE68A" />
+                  <line x1="66" y1="29" x2="80" y2="29" stroke="#EA580C" stroke-width="3" />
+                  <text x="84" y="32" font-size="9" fill="#EA580C" font-weight="bold">小穎</text>
+                  <line x1="115" y1="29" x2="129" y2="29" stroke="#0D9488" stroke-width="2.5" stroke-dasharray="3,2" />
+                  <text x="133" y="32" font-size="9" fill="#0D9488" font-weight="bold">紹婷</text>
+                </svg>
+              </div>
+            `
+          },
+          {
+            badge: "概念 2：省略符號與繪製折線圖 5 步驟",
+            title: "波浪省略符號「～」讓微小的變化更清楚！",
+            desc: "當資料的數值都很大（例如：氣溫都在 21°C～29°C 之間，或門票收入都在 110 萬～180 萬元之間），為了不用畫出 1～20°C 空蕩蕩的格子，我們會在縱軸 0 的上方畫上波浪狀的「省略符號（〰）」，並且讓每一小格代表的級距保持相同。",
+            keyPoints: [
+              "【步驟 1】寫上折線圖的「標題」（通常寫在圖的下方）。",
+              "【步驟 2 & 3】寫出橫軸（通常為時間或月分）與縱軸的名稱及「單位」。",
+              "【步驟 4】標出縱軸刻度（沒變化的區間用「省略符號 〰」表示，上方每格代表的數量要一致）。",
+              "【步驟 5】在橫軸與縱軸交會處「點上記號」，再用直尺依序把點連起來！"
+            ],
+            visualHtml: `
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-orange-50/60 p-4 rounded-2xl border border-orange-200">
+                <div class="bg-white p-3.5 rounded-xl border border-amber-200 text-center">
+                  <div class="text-2xl mb-1">📐 折線越陡</div>
+                  <div class="text-xs font-black text-orange-800">相鄰兩點相差越多</div>
+                  <p class="text-xs text-stone-600 mt-1">線段越接近垂直，代表那段時間增加或減少最快！</p>
+                </div>
+                <div class="bg-white p-3.5 rounded-xl border border-amber-200 text-center">
+                  <div class="text-2xl mb-1">➖ 折線水平</div>
+                  <div class="text-xs font-black text-orange-800">數量完全沒變</div>
+                  <p class="text-xs text-stone-600 mt-1">例如 7月和 8月下雨日數都是 17天，連線就是平的。</p>
+                </div>
+                <div class="bg-white p-3.5 rounded-xl border border-amber-200 text-center">
+                  <div class="text-2xl mb-1">〰 省略符號</div>
+                  <div class="text-xs font-black text-orange-800">刻度從 0 開始跳躍</div>
+                  <p class="text-xs text-stone-600 mt-1">縱軸底部仍要寫 0，經過波浪線後每格差距必須固定！</p>
+                </div>
+              </div>
+            `
+          }
+        ],
+        formulas: [
+          { tag: "看變化快慢", title: "折線越陡 ＝ 相差越多", text: "想找相鄰哪兩個月上升或下降最多，不用全部算，直接找「斜率最陡」的那一段折線！" },
+          { tag: "看兩組差距", title: "同時間上下兩點距離越遠 ＝ 相差越多", text: "在雙折線圖中，同一條垂直線上兩個點離最遠，代表兩組資料在該月分差距最大。" },
+          { tag: "看疊加長條圖", title: "整條總高度 ＝ 兩項資料相加總和", text: "疊加型長條圖要看總人數時，直接對齊最頂端的刻度；看單一項目則要相減計算長度。" },
+          { tag: "刻度小陷阱", title: "先算「每一小格」代表多少！", text: "下筆作答前，一定要先看縱軸一大格分成幾小格（例如每格代表 2 人、半格代表 1 人，或每格代表 10 萬元）。" }
+        ],
+        examples: [
+          {
+            tab: "範例 1：疊加型長條圖",
+            question: "吉利動物園下半年購票人次疊加長條圖中，12 月的全票長條從 0 到 13（千人次），上方的半票長條從 13 疊到 18（千人次）。請問 12 月的「購買總人次」與「半票人次」各是多少？",
+            steps: [
+              { title: "注意單位與總高度", detail: "縱軸單位是「千人次」。12 月整條柱子最高處對齊 18，所以購買總人次是 18 千人次 ＝ 18000 人次。" },
+              { title: "分開算出全票與半票", detail: "下方全票是 13 千人次（13000 人次）；上方半票是從 13 疊到 18，所以是 18 － 13 ＝ 5 千人次（5000 人次）。" },
+              { title: "檢查答案", detail: "總人次：18000 人次；半票人次：5000 人次（千萬別忘記把「千人次」換成「000」喔！）。" }
+            ]
+          },
+          {
+            tab: "範例 2：雙折線圖比較",
+            question: "阿奇調查蘭嶼和澎湖上半年的平均氣溫折線圖：一月蘭嶼 18.6°C、澎湖 17.1°C；三月蘭嶼 20.4°C、澎湖 19.9°C；六月蘭嶼 25.9°C、澎湖 27.9°C。請問哪一個月兩地氣溫相差最少？相差幾 °C？",
+            steps: [
+              { title: "分別計算各月溫差", detail: "一月相差：18.6 － 17.1 ＝ 1.5 (°C)；三月相差：20.4 － 19.9 ＝ 0.5 (°C)；六月相差：27.9 － 25.9 ＝ 2 (°C)。" },
+              { title: "對照折線圖視覺特徵", detail: "在折線圖上，三月時兩條線的點靠得最近，代表溫差最小。" },
+              { title: "得出結論", detail: "三月相差最少，只相差 0.5°C。" }
+            ]
+          },
+          {
+            tab: "範例 3：門票收入與陡緩",
+            question: "嘉福遊樂園 1～6 月門票收入分別為：一月 120 萬元、二月 170 萬元、三月 150 萬元、四月 140 萬元、五月 110 萬元、六月 120 萬元。請問相鄰哪兩個月收入「增加最多」？哪兩個月「減少最多」？",
+            steps: [
+              { title: "尋找上升最陡的線段（增加最多）", detail: "一月到二月從 120 萬升到 170 萬，170 － 120 ＝ 50（萬元），折線向上最陡！" },
+              { title: "尋找下降最陡的線段（減少最多）", detail: "四月到五月從 140 萬降到 110 萬，140 － 110 ＝ 30（萬元），折線向下最陡！" },
+              { title: "得出結論", detail: "一月到二月增加最多（增加 50 萬元）；四月到五月減少最多（減少 30 萬元）。" }
+            ]
+          }
+        ],
+        quizzes: [
+          {
+            q: "在繪製 10 月 20 日 9 時到 16 時的氣溫變化折線圖時，氣溫都在 21°C 到 29°C 之間變化。為了讓折線變化更清楚，縱軸 1°C～20°C 之間可以用什麼表示？",
+            options: ["直接把 0 擦掉不寫", "用波浪狀的「省略符號（〰）」表示", "把 1～20°C 畫成不同大小的格子"],
+            ans: 1,
+            exp: "沒有變化的區間可以用波浪狀的「省略符號」表示，但縱軸底部仍要從 0 開始喔！"
+          },
+          {
+            q: "觀察小穎一年級到六年級的體重折線圖，如果發現「三年級到四年級」這一段折線向上最陡，代表什麼意思？",
+            options: ["三年級到四年級的體重增加最多", "四年級的體重是一到六年級最重的", "三年級到四年級體重減少最多"],
+            ans: 0,
+            exp: "折線越陡代表相鄰兩個年級之間的變化量越大，向上最陡表示體重「增加最多」！"
+          },
+          {
+            q: "在「123 包子店上半年菜包和肉包銷售量折線圖」中，如果四月時肉包的點在 290、菜包的點在 250，且兩點上下距離比其他月分都遠，代表什麼？",
+            options: ["四月賣出的包子總數最多", "四月時菜包和肉包的銷售量相差最多（相差 40 個）", "四月時菜包賣得比肉包多"],
+            ans: 1,
+            exp: "同一月分兩點上下距離越遠，代表兩組資料相差越多（290 － 250 ＝ 40 個）。"
+          },
+          {
+            q: "報讀「和平國小五年級男女生人數疊加型長條圖」時，五年 1 班下方男生長條到 14，上方女生長條繼續疊到 26。請問五年 1 班女生有幾人？全班共幾人？",
+            options: ["女生 26 人、全班 40 人", "女生 12 人、全班 26 人", "女生 14 人、全班 26 人"],
+            ans: 1,
+            exp: "疊加型長條圖的頂端 26 是全班總人數，女生人數要用相減：26 － 14 ＝ 12（人）！"
+          },
+          {
+            q: "嘉福遊樂園二月到五月的門票收入依序是：170 萬、150 萬、140 萬、110 萬元。請問二月到五月的折線趨勢是如何？",
+            options: ["逐月增加（折線持續上升）", "逐月減少（折線持續下降）", "保持不變（折線呈水平線）"],
+            ans: 1,
+            exp: "從 170 萬一路降到 150 萬、140 萬、110 萬，折線逐漸下降，代表收入「逐月減少」。"
+          }
+        ]
+      },
+
+      // ==================== 第 2 單元：因數和倍數 ====================
+      {
+        id: 2,
+        code: "第 2 單元",
+        name: "因數和倍數",
+        icon: "🔢",
+        tagline: "整除意義、成對找因數、公因數與公倍數應用、2/5/10 倍數判別",
+        summary: "從「餘數是 0」認識整除，用排長方形與乘除法成對找出所有因數；學會找最大公因數（平分問題）與最小公倍數（堆疊分組問題），並秒判 2、5、10 的倍數！",
+        concepts: [
+          {
+            badge: "概念 1：整除、因數成對找法與倍數關係",
+            title: "餘數是 0 叫整除！找因數像牽手一樣「一頭一尾成對出現」",
+            desc: "在除法算式中，當「被除數、除數、商」都是整數，而且「餘數是 0」時，就叫作【整除】（例如 12 ÷ 3 ＝ 4…0）。用 12 張正方形紙卡排長方形，可以排成 1×12、2×6、3×4，所以 1、2、3、4、6、12 都是 12 的因數！",
+            keyPoints: [
+              "【因數與倍數互逆】若 甲 × 乙 ＝ 丙（例：8 × 3 ＝ 24），則 8 和 3 都是 24 的「因數」；24 是 8 和 3 的「倍數」。",
+              "【因數有限個】任何整數最小的因數一定是 1，最大的因數一定是「自己本身」。",
+              "【倍數無限多個】一個數乘以 1、2、3、4……都是它的倍數，最小的倍數是「自己本身」，最大找不到（無限多個）！"
+            ],
+            visualHtml: `
+              <div class="bg-amber-50/70 border-2 border-amber-200 rounded-2xl p-4 space-y-3">
+                <div class="text-xs font-black text-amber-900">🌈 視覺圖解：用「彩虹成對法」找出 12 的所有因數（排長方形）</div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-center">
+                  <div class="bg-white p-3 rounded-xl border border-amber-200">
+                    <div class="text-xs font-bold text-stone-500 mb-1">排成 1 行 × 12 個</div>
+                    <div class="inline-grid grid-cols-12 gap-0.5 bg-amber-100 p-1 rounded">
+                      ${Array(12).fill('<span class="w-3 h-3 bg-amber-500 rounded-sm"></span>').join('')}
+                    </div>
+                    <div class="text-xs font-black text-amber-900 mt-1.5">1 × 12 ＝ 12 ➔ 找到 (1, 12)</div>
+                  </div>
+                  <div class="bg-white p-3 rounded-xl border border-amber-200">
+                    <div class="text-xs font-bold text-stone-500 mb-1">排成 2 行 × 6 個</div>
+                    <div class="inline-grid grid-cols-6 gap-0.5 bg-orange-100 p-1 rounded">
+                      ${Array(12).fill('<span class="w-3.5 h-3.5 bg-orange-500 rounded-sm"></span>').join('')}
+                    </div>
+                    <div class="text-xs font-black text-orange-900 mt-1.5">2 × 6 ＝ 12 ➔ 找到 (2, 6)</div>
+                  </div>
+                  <div class="bg-white p-3 rounded-xl border border-amber-200">
+                    <div class="text-xs font-bold text-stone-500 mb-1">排成 3 行 × 4 個</div>
+                    <div class="inline-grid grid-cols-4 gap-0.5 bg-yellow-100 p-1 rounded">
+                      ${Array(12).fill('<span class="w-4 h-4 bg-yellow-600 rounded-sm"></span>').join('')}
+                    </div>
+                    <div class="text-xs font-black text-yellow-900 mt-1.5">3 × 4 ＝ 12 ➔ 找到 (3, 4)</div>
+                  </div>
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-amber-200 text-center text-xs sm:text-sm font-bold text-amber-950">
+                  💡 12 的因數由小到大排好：<span class="px-2 py-0.5 bg-amber-100 text-amber-900 rounded">1</span> 、 <span class="px-2 py-0.5 bg-orange-100 text-orange-900 rounded">2</span> 、 <span class="px-2 py-0.5 bg-yellow-100 text-yellow-900 rounded">3</span> 、 <span class="px-2 py-0.5 bg-yellow-100 text-yellow-900 rounded">4</span> 、 <span class="px-2 py-0.5 bg-orange-100 text-orange-900 rounded">6</span> 、 <span class="px-2 py-0.5 bg-amber-100 text-amber-900 rounded">12</span>（頭尾相乘都是 12！）
+                </div>
+              </div>
+            `
+          },
+          {
+            badge: "概念 2：公因數、公倍數與 2 / 5 / 10 倍數判別",
+            title: "看個位數秒判 2、5、10 的倍數！分清楚「平分剪段」與「排長分組」",
+            desc: "兩數共同的因數叫「公因數」（最小公因數永遠是 1，最大叫最大公因數）；兩數共同的倍數叫「公倍數」（最小叫最小公倍數）。另外，只要看一個整數的「個位數字」，就能 1 秒判斷是不是 2、5、10 的倍數喔！",
+            keyPoints: [
+              "【2 的倍數】個位數字是 0、2、4、6、8（偶數）。",
+              "【5 的倍數】個位數字是 0 或 5。",
+              "【10 的倍數】個位數字是 0（同時也是 2 和 5 的公倍數！）。",
+              "【補充：3 的倍數】把各個位數的數字「全部加起來」，如果和能被 3 整除，就是 3 的倍數（例：141 ➔ 1+4+1=6，是 3 的倍數）。"
+            ],
+            visualHtml: `
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div class="bg-amber-50 border-2 border-amber-200 p-4 rounded-2xl">
+                  <div class="text-sm font-black text-amber-950 mb-1">✂️ 什麼時候找「公因數」？</div>
+                  <p class="text-xs text-stone-700 leading-relaxed">
+                    題目出現「把大東西<strong class="text-orange-700">剪成小段</strong>」、「把兩種點心<strong class="text-orange-700">平分裝盒</strong>，每盒一樣多且剛好分完，最多分幾盒？」➔ 數字變小，找<strong>公因數 / 最大公因數</strong>！
+                  </p>
+                </div>
+                <div class="bg-orange-50 border-2 border-orange-200 p-4 rounded-2xl">
+                  <div class="text-sm font-black text-orange-950 mb-1">🧱 什麼時候找「公倍數」？</div>
+                  <p class="text-xs text-stone-700 leading-relaxed">
+                    題目出現「用小紙條<strong class="text-orange-700">接成長條</strong>排到一樣長」、「一群人每 3 人一組或每 4 人一組都剛好分完，<strong class="text-orange-700">最少有幾人</strong>？」➔ 數字變大，找<strong>公倍數 / 最小公倍數</strong>！
+                  </p>
+                </div>
+              </div>
+            `
+          }
+        ],
+        formulas: [
+          { tag: "整除定義", title: "被除數 ÷ 除數 ＝ 商 … 0", text: "三個數（被除數、除數、商）都必須是整數，且餘數是 0，才叫整除。" },
+          { tag: "奇數個因數祕密", title: "完全平方數的因數是「奇數個」", text: "因為因數成對出現，只有像 16（4×4）、25（5×5）、36（6×6）重複乘自己時，因數個數才會是奇數個！" },
+          { tag: "兩數相乘必為公倍數", title: "甲 × 乙 一定是甲和乙的公倍數", text: "例如 2×3＝6 是 2 和 3 的公倍數；4×6＝24 也是 4 和 6 的公倍數（但最小公倍數是 12）。" },
+          { tag: "尾數秒判口訣", title: "2 看偶數、5 看零五、10 看零", text: "個位是 0、2、4、6、8 是 2 的倍數；個位是 0、5 是 5 的倍數；個位是 0 是 10 的倍數。" }
+        ],
+        examples: [
+          {
+            tab: "範例 1：公因數平分裝盒",
+            question: "有 20 個甜甜圈和 16 個馬卡龍，要分裝到盒子裡，每盒的甜甜圈一樣多，每盒的馬卡龍也一樣多，且全部分完。請問可以分成幾盒？最多能分成幾盒？",
+            steps: [
+              { title: "判斷題型：平分裝盒找「公因數」", detail: "20 個甜甜圈和 16 個馬卡龍都要被「盒數」整除，所以盒數是 20 和 16 的公因數。" },
+              { title: "分別列出因數並圈出公因數", detail: "20 的因數：1、2、4、5、10、20；16 的因數：1、2、4、8、16。共同的公因數有：1、2、4。" },
+              { title: "寫出所有可能與最大值", detail: "可以分成 1 盒、2 盒或 4 盒；其中最大公因數是 4，所以「最多能分成 4 盒」。" }
+            ]
+          },
+          {
+            tab: "範例 2：區間內的倍數問題",
+            question: "一箱果凍有「一百六十幾個」，每 12 個裝成一盒剛好分完，請問這箱果凍有幾個？",
+            steps: [
+              { title: "釐清數字範圍與倍數關係", detail: "「一百六十幾個」代表數量在 161～169 個之間，且每 12 個一盒分完，代表總數是 12 的倍數。" },
+              { title: "用除法估商，再用乘法夾擊", detail: "161 ÷ 12 ＝ 13 … 5。試算 12 × 13 ＝ 156（太小）；12 × 14 ＝ 168（符合 161～169！）；12 × 15 ＝ 180（太大）。" },
+              { title: "得出結論", detail: "這箱果凍有 168 個。" }
+            ]
+          },
+          {
+            tab: "範例 3：公倍數分組問題",
+            question: "五年級學生有「七十幾個人」，要分組參觀畫展，每 9 個人一組、或每 12 個人一組，都剛好分完。請問五年級學生有幾個人？",
+            steps: [
+              { title: "判斷題型：兩種分組都分完找「公倍數」", detail: "每 9 人一組分完（9 的倍數），每 12 人一組也分完（12 的倍數），所以總人數是 9 和 12 的公倍數，且在 71～79 之間。" },
+              { title: "列出倍數找出公倍數", detail: "9 的倍數：9、18、27、36、45、54、63、72、81…；12 的倍數：12、24、36、48、60、72、84…。公倍數有 36、72…。" },
+              { title: "對照人數範圍", detail: "在 71～79 之間的公倍數是 72，所以五年級學生有 72 個人。" }
+            ]
+          }
+        ],
+        quizzes: [
+          {
+            q: "關於因數與倍數的敘述，下列哪一個是「完全正確」的？",
+            options: ["48 的因數中，最小的是 1，最大的是 48", "13 的倍數中，最小的是 1，最大的是 13", "3、5、7、9 這四個數，都只有兩個因數"],
+            ans: 0,
+            exp: "任何整數最小的因數是 1、最大因數是本身；倍數最小是本身且有無限多個；而 9 的因數有 1、3、9 共三個喔！"
+          },
+          {
+            q: "下列哪一個數，它的「因數個數」是奇數個？",
+            options: ["18", "16", "15"],
+            ans: 1,
+            exp: "16 ＝ 1×16 ＝ 2×8 ＝ 4×4，因為 4 和 4 重複，所以 16 的因數有 1、2、4、8、16（共 5 個，是奇數個）！"
+          },
+          {
+            q: "在「120、209、286、655、2130」這五個數中，同時是 2、5 和 10 的倍數有哪些？",
+            options: ["120、286、2130", "120、655、2130", "120、2130"],
+            ans: 2,
+            exp: "同時是 2、5、10 的倍數，個位數字一定要是「0」，所以只有 120 和 2130 符合！"
+          },
+          {
+            q: "老師把 56 張圖畫紙平分給班上學生剛好分完，已知學生人數在 20～30 人之間，請問班上學生有幾人？",
+            options: ["24 人", "28 人", "26 人"],
+            ans: 1,
+            exp: "56 的因數有 1、2、4、7、8、14、28、56，其中介於 20～30 之間的因數是 28！"
+          },
+          {
+            q: "花店裡的鬱金香有「四十幾朵」，每 6 朵綁成一束、或每 8 朵綁成一束，都剛好綁完。請問花店裡有幾朵鬱金香？",
+            options: ["42 朵", "46 朵", "48 朵"],
+            ans: 2,
+            exp: "6 和 8 的公倍數有 24、48、72……，在四十幾朵（41～49）之間的是 48 朵！"
+          }
+        ]
+      },
+
+      // ==================== 第 3 單元：多邊形 ====================
+      {
+        id: 3,
+        code: "第 3 單元",
+        name: "多邊形",
+        icon: "🔺",
+        tagline: "多邊形與正多邊形、三角形邊長性質、三角形與多邊形內角和",
+        summary: "認識多邊形的邊、角、頂點數量，搞懂「正多邊形」必須同時等邊又等角；掌握「三角形任意兩邊和大於第三邊」與「內角和 180° × (邊數－2)」！",
+        concepts: [
+          {
+            badge: "概念 1：多邊形、正多邊形與三角形邊長性質",
+            title: "正多邊形要「邊等長＋角一樣大」！較短兩邊和 ＞ 最長邊才能圍成三角形",
+            desc: "由 3 條以上直線段圍成的封閉圖形叫「多邊形」（n 邊形就有 n 個邊、n 個角、n 個頂點；圓形或沒封閉的圖形不是多邊形）。兩點之間「直線最短」，因此要圍成三角形，任意兩邊的和一定要大於第三邊！",
+            keyPoints: [
+              "【正多邊形雙條件】必須「每個邊都一樣長」而且「每個角都一樣大」！（菱形雖然 4 邊等長但角不一樣大；長方形雖然 4 角都 90° 但邊不一樣長，都不是正多邊形）。",
+              "【秒判能否排成三角形】只要把「最短的兩個邊相加」，如果「大於（＞）最長邊」，就一定能排成三角形！（等於或小於都不行）。"
+            ],
+            visualHtml: `
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3 bg-amber-50/70 p-4 rounded-2xl border-2 border-amber-200">
+                <div class="bg-white p-3.5 rounded-xl border border-amber-200">
+                  <div class="text-xs font-black text-amber-900 mb-2">🧐 辨識陷阱：誰才是真正的「正四邊形（正方形）」？</div>
+                  <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                    <div class="p-2 bg-rose-50 rounded-lg border border-rose-200">
+                      <div class="font-black text-rose-800">長方形 ❌</div>
+                      <div class="text-[11px] text-stone-600 mt-1">角一樣大(90°)<br>但邊不一樣長</div>
+                    </div>
+                    <div class="p-2 bg-rose-50 rounded-lg border border-rose-200">
+                      <div class="font-black text-rose-800">菱形 ❌</div>
+                      <div class="text-[11px] text-stone-600 mt-1">邊一樣長<br>但角不一樣大</div>
+                    </div>
+                    <div class="p-2 bg-emerald-50 rounded-lg border border-emerald-300">
+                      <div class="font-black text-emerald-800">正方形 ✅</div>
+                      <div class="text-[11px] text-stone-600 mt-1">4邊一樣長<br>且4角一樣大</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-white p-3.5 rounded-xl border border-amber-200 flex flex-col justify-center">
+                  <div class="text-xs font-black text-amber-900 mb-2">📏 紙條排三角形測試：兩短邊和 ＞ 最長邊</div>
+                  <ul class="text-xs space-y-1.5 font-bold">
+                    <li class="text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded">✅ 5cm、7cm、9cm ➔ 5 ＋ 7 ＞ 9（可以排成！）</li>
+                    <li class="text-rose-700 bg-rose-50 px-2.5 py-1 rounded">❌ 5cm、7cm、12cm ➔ 5 ＋ 7 ＝ 12（塌成一直線，不行！）</li>
+                    <li class="text-rose-700 bg-rose-50 px-2.5 py-1 rounded">❌ 5cm、5cm、12cm ➔ 5 ＋ 5 ＜ 12（太短碰不到，不行！）</li>
+                  </ul>
+                </div>
+              </div>
+            `
+          },
+          {
+            badge: "概念 2：三角形與多邊形的內角和",
+            title: "三角形 3 個角剪下來剛好拼成平角 180°！畫對角線秒算多邊形內角和",
+            desc: "不論大三角形或小三角形，把 3 個角剪下來拼在一起，剛好是一條直線（平角 ＝ 180°）。因此一個三角形最多只能有 1 個直角或 1 個鈍角！想求四邊形、五邊形的內角和，只要固定從一個頂點 A 畫對角線，看能分成幾個三角形就乘以 180°！",
+            keyPoints: [
+              "【三角形內角和】固定為 180°。直角三角形中，直角（90°）以外的另外兩角合起來也是 90°！",
+              "【等腰三角形求角】兩底角相等！先知頂角求底角：(180° － 頂角) ÷ 2；先知底角求頂角：180° － 底角 × 2。",
+              "【多邊形切三角形】四邊形可分成 2 個三角形（180°×2＝360°）；五邊形可分成 3 個三角形（180°×3＝540°）。"
+            ],
+            visualHtml: `
+              <div class="bg-orange-50/70 border-2 border-orange-200 rounded-2xl p-4">
+                <div class="text-xs font-black text-orange-950 mb-3">✂️ 圖解內角和：固定從頂點 A 畫對角線分割成三角形</div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
+                  <div class="bg-white p-3 rounded-xl border border-amber-200">
+                    <svg viewBox="0 0 120 85" class="w-28 h-20 mx-auto">
+                      <polygon points="60,10 15,75 105,75" fill="#FEF3C7" stroke="#D97706" stroke-width="2.5" />
+                      <text x="60" y="55" font-size="11" fill="#92400E" text-anchor="middle" font-weight="bold">180°</text>
+                    </svg>
+                    <div class="text-xs font-black text-amber-950">三角形（1 個△）</div>
+                    <div class="text-xs font-bold text-orange-700">180° × 1 ＝ 180°</div>
+                  </div>
+                  <div class="bg-white p-3 rounded-xl border border-amber-200">
+                    <svg viewBox="0 0 120 85" class="w-28 h-20 mx-auto">
+                      <polygon points="25,12 100,18 90,75 15,70" fill="#FFEDD5" stroke="#EA580C" stroke-width="2.5" />
+                      <line x1="25" y1="12" x2="90" y2="75" stroke="#DC2626" stroke-width="2" stroke-dasharray="4,2" />
+                      <text x="20" y="10" font-size="10" fill="#991B1B" font-weight="bold">A</text>
+                      <text x="42" y="55" font-size="10" fill="#9A3412" font-weight="bold">180°</text>
+                      <text x="72" y="38" font-size="10" fill="#9A3412" font-weight="bold">180°</text>
+                    </svg>
+                    <div class="text-xs font-black text-amber-950">四邊形（分成 2 個△）</div>
+                    <div class="text-xs font-bold text-orange-700">180° × 2 ＝ 360°</div>
+                  </div>
+                  <div class="bg-white p-3 rounded-xl border border-amber-200">
+                    <svg viewBox="0 0 120 85" class="w-28 h-20 mx-auto">
+                      <polygon points="60,8 108,35 90,78 30,78 12,35" fill="#FEF3C7" stroke="#D97706" stroke-width="2.5" />
+                      <line x1="60" y1="8" x2="30" y2="78" stroke="#DC2626" stroke-width="2" stroke-dasharray="4,2" />
+                      <line x1="60" y1="8" x2="90" y2="78" stroke="#DC2626" stroke-width="2" stroke-dasharray="4,2" />
+                      <text x="60" y="7" font-size="9" fill="#991B1B" font-weight="bold">A</text>
+                      <text x="30" y="45" font-size="9" fill="#92400E" font-weight="bold">①</text>
+                      <text x="60" y="58" font-size="9" fill="#92400E" font-weight="bold">②</text>
+                      <text x="90" y="45" font-size="9" fill="#92400E" font-weight="bold">③</text>
+                    </svg>
+                    <div class="text-xs font-black text-amber-950">五邊形（分成 3 個△）</div>
+                    <div class="text-xs font-bold text-orange-700">180° × 3 ＝ 540°</div>
+                  </div>
+                </div>
+              </div>
+            `
+          }
+        ],
+        formulas: [
+          { tag: "第三邊範圍速算", title: "兩邊差 ＜ 第三邊 ＜ 兩邊和", text: "已知三角形兩邊長為 A 和 B（A＞B），則第三邊長度一定比「A－B」大，且比「A＋B」小！" },
+          { tag: "多邊形內角和公式", title: "n 邊形內角和 ＝ 180° × (n － 2)", text: "三角形 180°、四邊形 360°、五邊形 540°、六邊形 720°（每多一個邊就多 180°）。" },
+          { tag: "平角與直角", title: "一直線平角 ＝ 180°、直角符號 ＝ 90°", text: "圖形上看到方框直角記號「∟」就是 90°；一條直線旁邊的外角與內角合起來是 180°。" },
+          { tag: "剪去一角變幾角", title: "三角形剪去 1 個角 ➔ 變成四邊形（4 個角）", text: "把三角形的一個尖角剪掉一刀，會多出一條邊，變成有 4 個邊、4 個角的四邊形！" }
+        ],
+        examples: [
+          {
+            tab: "範例 1：求第三邊可能長度",
+            question: "有一個等腰三角形，其中兩條邊的長度分別是 6 公分和 12 公分，請問第三邊的長度是多少公分？",
+            steps: [
+              { title: "列出等腰三角形的兩種可能", detail: "因為是等腰三角形（有兩邊一樣長），第三邊只可能是「6 公分」或「12 公分」。" },
+              { title: "用「兩短邊和 ＞ 最長邊」檢驗", detail: "若第三邊是 6 公分：三邊為 6、6、12，但 6 ＋ 6 ＝ 12（沒有大於 12，無法圍成三角形 ❌）。若第三邊是 12 公分：三邊為 6、12、12，6 ＋ 12 ＞ 12（可以圍成 ✅）。" },
+              { title: "得出結論", detail: "第三邊的長度一定是 12 公分。" }
+            ]
+          },
+          {
+            tab: "範例 2：等腰三角形求底角",
+            question: "有一個等腰三角形，已知頂角 ∠A 是 40°，請問底角 ∠B 和 ∠C 各是幾度？",
+            steps: [
+              { title: "利用三角形內角和 180° 先扣掉頂角", detail: "兩個底角合起來是：180° － 40° ＝ 140°。" },
+              { title: "利用等腰三角形「兩底角相等」平分", detail: "140° ÷ 2 ＝ 70°。" },
+              { title: "得出結論", detail: "底角 ∠B 和 ∠C 都是 70°。" }
+            ]
+          },
+          {
+            tab: "範例 3：四邊形求未知角",
+            question: "有一個四邊形，已知其中三個角分別是 80°、120° 和一個直角（∟），請問剩下的 ∠A 是幾度？",
+            steps: [
+              { title: "確認四邊形內角和與直角角度", detail: "四邊形的內角和是 360°，圖上的直角（∟）代表 90°。" },
+              { title: "先加總已知的三個角", detail: "80° ＋ 120° ＋ 90° ＝ 290°。" },
+              { title: "用 360° 減去已知角度和", detail: "360° － 290° ＝ 70°，所以 ∠A 是 70°。" }
+            ]
+          }
+        ],
+        quizzes: [
+          {
+            q: "把一個三角形紙片用剪刀「剪去 1 個角」，新的圖形會變成幾個角？",
+            options: ["2 個角", "3 個角", "4 個角"],
+            ans: 2,
+            exp: "三角形剪去 1 個角後，原本的尖角處會變成兩個角，新圖形變成四邊形，共有 4 個角！"
+          },
+          {
+            q: "已知三角形的兩邊長分別為 8 cm 和 19 cm，請問第三邊的長可能是下面哪一個？",
+            options: ["11 cm", "12 cm", "27 cm"],
+            ans: 1,
+            exp: "第三邊必須大於兩邊差（19－8＝11），且小於兩邊和（19＋8＝27），介於 11 cm 和 27 cm 之間只有 12 cm！"
+          },
+          {
+            q: "關於多邊形的敘述，下列哪一個是「正確」的？",
+            options: ["6 個邊都一樣長，但 6 個角不一樣大的六邊形，也叫作正六邊形", "直角三角形中，除了直角以外的另外兩個角合起來等於 90°", "一個三角形裡面最多可以有 2 個鈍角"],
+            ans: 1,
+            exp: "正多邊形必須「邊等長且角一樣大」；三角形最多只有 1 個直角或 1 個鈍角；直角三角形另兩角和為 180°－90°＝90°！"
+          },
+          {
+            q: "下面哪一組角度「不可能」是同一個三角形內的 3 個角？",
+            options: ["48°、52°、70°", "90°、45°、45°", "150°、20°、10°"],
+            ans: 0,
+            exp: "三角形內角和必須剛好是 180°！第一組 48°＋52°＋70°＝170°（不到 180°），所以不可能。"
+          },
+          {
+            q: "從五邊形的一個頂點 A 畫對角線，可以把五邊形分成幾個三角形？五邊形的內角和是幾度？",
+            options: ["分成 2 個三角形，內角和 360°", "分成 3 個三角形，內角和 540°", "分成 5 個三角形，內角和 900°"],
+            ans: 1,
+            exp: "五邊形從一頂點畫對角線可分成 5－2＝3 個三角形，內角和為 180° × 3 ＝ 540°！"
+          }
+        ]
+      },
+
+      // ==================== 第 4 單元：擴分、約分和通分 ====================
+      {
+        id: 4,
+        code: "第 4 單元",
+        name: "擴分、約分和通分",
+        icon: "🍕",
+        tagline: "等值分數、擴分與約分、通分比大小、同分子分數比較",
+        summary: "把分子和分母同乘以一數叫「擴分」，同除以公因數叫「約分」，分數的值都不變（等值分數）！比較異分母分數時，可用「通分（化為同分母）」或「化為同分子」來比大小。",
+        concepts: [
+          {
+            badge: "概念 1：擴分與約分（尋找等值分數）",
+            title: "分子分母「同乘」叫擴分、「同除」叫約分，蛋糕吃的量完全一樣大！",
+            desc: "將紙帶或蛋糕再細分（等分割），分子和分母同乘以一個比 1 大的整數，叫做【擴分】；反過來把小塊合併起來，分子和分母同除以一個比 1 大的公因數，叫做【約分】。擴分與約分出來的分數都和原來一樣大，稱為「等值分數」。當分子和分母只有公因數 1 時，就不能再約分了！",
+            keyPoints: [
+              "【擴分】分子、分母同時「乘以」相同整數（例：" + frac(3, 4) + " ＝ " + frac("3×2", "4×2") + " ＝ " + frac(6, 8) + "）。",
+              "【約分】分子、分母同時「除以」公因數（例：" + frac(6, 12) + " ＝ " + frac("6÷3", "12÷3") + " ＝ " + frac(2, 4) + "）。",
+              "【帶分數注意】帶分數擴分或約分時，前面的「整數部分保持不變」，只要處理後面的分數部分即可！"
+            ],
+            visualHtml: `
+              <div class="bg-amber-50/70 border-2 border-amber-200 rounded-2xl p-4 space-y-3">
+                <div class="text-xs font-black text-amber-900">🍰 視覺紙帶圖解：為什麼 ${frac(1, 2)} 、 ${frac(2, 4)} 和 ${frac(4, 8)} 都是一樣大的「等值分數」？</div>
+                <div class="space-y-2 bg-white p-3.5 rounded-xl border border-amber-200 text-xs font-bold">
+                  <div class="flex items-center gap-3">
+                    <span class="w-16 text-right text-amber-950">${frac(1, 2)} 條</span>
+                    <div class="flex-1 grid grid-cols-2 border-2 border-amber-700 rounded-lg overflow-hidden h-7">
+                      <div class="bg-amber-400 flex items-center justify-center text-amber-950">1/2</div>
+                      <div class="bg-stone-50"></div>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="w-16 text-right text-orange-900">${frac(2, 4)} 條</span>
+                    <div class="flex-1 grid grid-cols-4 border-2 border-orange-700 rounded-lg overflow-hidden h-7 divide-x divide-orange-700">
+                      <div class="bg-orange-400 flex items-center justify-center text-white">1/4</div>
+                      <div class="bg-orange-400 flex items-center justify-center text-white">1/4</div>
+                      <div class="bg-stone-50"></div>
+                      <div class="bg-stone-50"></div>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="w-16 text-right text-amber-800">${frac(4, 8)} 條</span>
+                    <div class="flex-1 grid grid-cols-8 border-2 border-amber-800 rounded-lg overflow-hidden h-7 divide-x divide-amber-800">
+                      <div class="bg-amber-500 text-white flex items-center justify-center text-[10px]">1/8</div>
+                      <div class="bg-amber-500 text-white flex items-center justify-center text-[10px]">1/8</div>
+                      <div class="bg-amber-500 text-white flex items-center justify-center text-[10px]">1/8</div>
+                      <div class="bg-amber-500 text-white flex items-center justify-center text-[10px]">1/8</div>
+                      <div class="bg-stone-50"></div><div class="bg-stone-50"></div><div class="bg-stone-50"></div><div class="bg-stone-50"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-xs text-center font-bold text-amber-900">
+                  向右細分（分子分母同乘）是<strong class="text-orange-700">「擴分」</strong>；向左合併（分子分母同除）是<strong class="text-orange-700">「約分」</strong>，塗色長度完全相等！
+                </div>
+              </div>
+            `
+          },
+          {
+            badge: "概念 2：通分與異分母分數比大小三大絕招",
+            title: "分母不同不能直接比！先「通分」變同分母，或用「同分子」秒殺",
+            desc: "用擴分或約分，把不同分母的分數化成「相同分母」的分數，這個過程就叫作【通分】。比較異分母分數大小時，我們有三種超實用的方法：",
+            keyPoints: [
+              "【方法 1：通分化成同分母】找兩分母的公倍數（或最小公倍數）當共同分母。分母一樣時，分子越大分數就越大！",
+              "【方法 2：同分子比較法】當「分子一樣大」時，平分的份數越少（分母越小），每一份反而越大！所以「分子相同，分母越小分數越大」（例：" + frac(5, 7) + " ＞ " + frac(5, 8) + "）。",
+              "【方法 3：和一半（" + frac(1, 2) + "）或 1 比較】例如 " + frac(3, 5) + " 比一半（" + frac(1, 2) + "）多，而 " + frac(4, 10) + " 比一半少，不用通分就知道 " + frac(3, 5) + " ＞ " + frac(4, 10) + "！"
+            ],
+            visualHtml: `
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-orange-50/60 p-4 rounded-2xl border border-orange-200">
+                <div class="bg-white p-3.5 rounded-xl border border-amber-200">
+                  <div class="text-xs font-black text-orange-800 mb-1">⚖️ 口訣一：分母相同（通分後）</div>
+                  <div class="text-sm font-black text-amber-950 mb-1">分子越大，分數越大！</div>
+                  <p class="text-xs text-stone-600">因為每小份一樣大，拿越多份（分子大）當然越多！<br>例：${frac(10, 12)} ＞ ${frac(9, 12)}</p>
+                </div>
+                <div class="bg-white p-3.5 rounded-xl border border-amber-200">
+                  <div class="text-xs font-black text-orange-800 mb-1">🍕 口訣二：分子相同（拿一樣多塊）</div>
+                  <div class="text-sm font-black text-amber-950 mb-1">分母越小，分數反而越大！</div>
+                  <p class="text-xs text-stone-600">披薩切越少塊（分母小），每一塊就越大片！<br>例：${frac(1, 4)} ＞ ${frac(1, 5)} ，所以 ${frac(5, 7)} ＞ ${frac(5, 8)}</p>
+                </div>
+              </div>
+            `
+          }
+        ],
+        formulas: [
+          { tag: "擴分黃金律", title: "分子 × k 、 分母 × k（k＞1）", text: "擴分時分子和分母一定要乘以「同一個數」，不能只乘分母忘記乘分子！" },
+          { tag: "約分黃金律", title: "分子 ÷ 公因數 、 分母 ÷ 公因數", text: "想一次約分到不能再約分，可以直接除以分子和分母的「最大公因數」。" },
+          { tag: "假分數比大小", title: "假分數先化成「帶分數」更好比！", text: "例如比較 5/2 和 9/5，先化成 2 又 1/2 和 1 又 4/5，比整數部分 2 ＞ 1 就直接秒殺了！" },
+          { tag: "與 1 相差比較法", title: "像 19/17 與 13/11：拆成 1 加單位分數", text: "19/17 ＝ 1 又 2/17，13/11 ＝ 1 又 2/11；因為同分子 2/17 ＜ 2/11，所以 19/17 ＜ 13/11！" }
+        ],
+        examples: [
+          {
+            tab: "範例 1：利用公因數約分",
+            question: "請用約分的方法，寫出和「 18 / 24 」一樣大的三個等值分數，並找出哪一個分數不能再約分？",
+            steps: [
+              { title: "找出分子 18 和分母 24 的公因數", detail: "18 和 24 除了 1 以外的公因數有：2、3、6。" },
+              { title: "分別除以公因數 2、3、6 進行約分", detail: "用 2 約分：18÷2 / 24÷2 ＝ 9/12；用 3 約分：18÷3 / 24÷3 ＝ 6/8；用 6 約分：18÷6 / 24÷6 ＝ 3/4。" },
+              { title: "判斷最簡分數", detail: "三個等值分數為 9/12、6/8、3/4；其中「 3/4 」的分子分母只有公因數 1，不能再約分！" }
+            ]
+          },
+          {
+            tab: "範例 2：通分比較異分母分數",
+            question: "比較「 7 / 12 」和「 11 / 18 」哪一個分數比較小？",
+            steps: [
+              { title: "找出兩分母 12 和 18 的最小公倍數", detail: "12 的倍數：12、24、36…；18 的倍數：18、36…。最小公倍數是 36，通分成分母為 36 的分數。" },
+              { title: "分別擴分換算", detail: "7/12 ＝ (7×3)/(12×3) ＝ 21/36；11/18 ＝ (11×2)/(18×2) ＝ 22/36。" },
+              { title: "比較分子大小", detail: "因為 21/36 ＜ 22/36，所以「 7 / 12 」比較小。" }
+            ]
+          },
+          {
+            tab: "範例 3：龜兔賽跑與同分子比較",
+            question: "龜兔賽跑全程長 1 公里，小烏龜已經跑了 9/10 公里，小兔子已經跑了 7/8 公里。請問誰距離終點比較近？",
+            steps: [
+              { title: "先算出各自距離終點還剩幾公里", detail: "小烏龜剩：1 － 9/10 ＝ 1/10（公里）；小兔子剩：1 － 7/8 ＝ 1/8（公里）。" },
+              { title: "運用「同分子分數比較法」比大小", detail: "比較剩下的距離 1/10 和 1/8：分子都是 1，分母越大分數越小，所以 1/10 ＜ 1/8。" },
+              { title: "注意題目問「誰距離終點比較近」", detail: "剩下的距離越短，代表離終點越近！因為 1/10 公里比較短，所以「小烏龜」距離終點比較近。" }
+            ]
+          }
+        ],
+        quizzes: [
+          {
+            q: "在等式「 1 又 4/5 ＝ 1 又 20/( ) 」中，括號裡的數應該是多少？",
+            options: ["20", "25", "16"],
+            ans: 1,
+            exp: "分子 4 變成 20 是乘以 5（4×5＝20），分母 5 也要同乘以 5：5 × 5 ＝ 25！"
+          },
+          {
+            q: "下列哪一個分數和「 18 / 15 」不一樣大？",
+            options: ["6 / 5", "36 / 30", "40 / 35"],
+            ans: 2,
+            exp: "18/15 用 3 約分是 6/5，擴分 2 倍是 36/30；而 40/35 用 5 約分是 8/7，和 6/5 不一樣大！"
+          },
+          {
+            q: "在「 14/21 、 3 又 25/30 、 8/15 、 2 又 16/24 」這四個分數中，哪一個分數「不能再約分」？",
+            options: ["14 / 21", "8 / 15", "2 又 16 / 24"],
+            ans: 1,
+            exp: "8 的因數有 1、2、4、8，15 的因數有 1、3、5、15，兩數只有公因數 1，所以 8/15 不能再約分！"
+          },
+          {
+            q: "比較「 12 / 5 」和「 24 / 11 」的大小，如果用「化為同分子」的方法，下列何者正確？",
+            options: ["12/5 ＝ 24/10，因為分母 10 ＜ 11，所以 12/5 ＞ 24/11", "12/5 ＝ 24/10，因為分母 10 ＜ 11，所以 12/5 ＜ 24/11", "兩數一樣大"],
+            ans: 0,
+            exp: "將 12/5 擴分分子分母同乘 2 得到 24/10；當分子都是 24 時，分母越小分數越大，所以 24/10 ＞ 24/11！"
+          },
+          {
+            q: "分母為 12 的真分數中，大於「 1 / 4 」的分數共有幾個？",
+            options: ["7 個", "8 個", "9 個"],
+            ans: 1,
+            exp: "將 1/4 擴分成分母為 12 的分數是 3/12。大於 3/12 的真分數有 4/12、5/12、6/12、7/12、8/12、9/12、10/12、11/12，共 8 個！"
+          }
+        ]
+      },
+
+      // ==================== 第 5 單元：線對稱圖形 ====================
+      {
+        id: 5,
+        code: "第 5 單元",
+        name: "線對稱圖形",
+        icon: "🦋",
+        tagline: "線對稱與對稱軸、正多邊形對稱軸數量、對稱點/邊/角與方格繪圖",
+        summary: "沿著直線對折能完全疊合的圖形叫「線對稱圖形」，摺線叫「對稱軸」。掌握「正幾邊形就有幾條對稱軸」、對稱邊等長、對稱角一樣大，以及「對稱軸垂直平分對稱點連線」！",
+        concepts: [
+          {
+            badge: "概念 1：線對稱圖形與對稱軸數量大集合",
+            title: "正幾邊形就有幾條對稱軸！小心「平行四邊形」0 條對稱軸陷阱",
+            desc: "將圖形沿著一條直線對折，如果摺線兩側可以「完全疊合」，這個圖形就叫【線對稱圖形】，這條摺線就叫【對稱軸】。常見平面圖形的對稱軸數量是必考重點，特別要注意平行四邊形不管怎麼對折都無法完全疊合喔！",
+            keyPoints: [
+              "【正多邊形規律】正三角形有 3 條、正方形有 4 條、正五邊形有 5 條、正六邊形有 6 條 ➔ 正 n 邊形就有 n 條對稱軸！",
+              "【圓形的對稱軸】圓形不管從哪一條直徑對折都能疊合，所以圓形有「無限多條」對稱軸！",
+              "【四邊形家族比一比】正方形：4 條｜長方形：2 條（對角線不能疊合！）｜菱形：2 條（對角線）｜等腰梯形：1 條｜平行四邊形：0 條（不是線對稱圖形！）。"
+            ],
+            visualHtml: `
+              <div class="bg-amber-50/70 border-2 border-amber-200 rounded-2xl p-4">
+                <div class="text-xs font-black text-amber-900 mb-3">🔍 必考圖形對稱軸數量一覽表（虛線為對稱軸）</div>
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 text-center">
+                  <div class="bg-white p-2.5 rounded-xl border border-amber-200">
+                    <svg viewBox="0 0 80 80" class="w-14 h-14 mx-auto">
+                      <rect x="15" y="15" width="50" height="50" fill="#FEF3C7" stroke="#D97706" stroke-width="2" />
+                      <line x1="40" y1="5" x2="40" y2="75" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="3,2" />
+                      <line x1="5" y1="40" x2="75" y2="40" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="3,2" />
+                      <line x1="10" y1="10" x2="70" y2="70" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="3,2" />
+                      <line x1="70" y1="10" x2="10" y2="70" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="3,2" />
+                    </svg>
+                    <div class="text-xs font-black text-amber-950">正方形</div>
+                    <div class="text-xs font-extrabold text-emerald-700">4 條對稱軸</div>
+                  </div>
+                  <div class="bg-white p-2.5 rounded-xl border border-amber-200">
+                    <svg viewBox="0 0 80 80" class="w-14 h-14 mx-auto">
+                      <rect x="10" y="22" width="60" height="36" fill="#FFEDD5" stroke="#EA580C" stroke-width="2" />
+                      <line x1="40" y1="10" x2="40" y2="70" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="3,2" />
+                      <line x1="3" y1="40" x2="77" y2="40" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="3,2" />
+                    </svg>
+                    <div class="text-xs font-black text-amber-950">長方形</div>
+                    <div class="text-xs font-extrabold text-orange-700">只有 2 條！</div>
+                  </div>
+                  <div class="bg-white p-2.5 rounded-xl border border-amber-200">
+                    <svg viewBox="0 0 80 80" class="w-14 h-14 mx-auto">
+                      <polygon points="40,10 70,40 40,70 10,40" fill="#FEF3C7" stroke="#D97706" stroke-width="2" />
+                      <line x1="40" y1="3" x2="40" y2="77" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="3,2" />
+                      <line x1="3" y1="40" x2="77" y2="40" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="3,2" />
+                    </svg>
+                    <div class="text-xs font-black text-amber-950">菱形</div>
+                    <div class="text-xs font-extrabold text-orange-700">只有 2 條！</div>
+                  </div>
+                  <div class="bg-white p-2.5 rounded-xl border border-rose-200">
+                    <svg viewBox="0 0 80 80" class="w-14 h-14 mx-auto">
+                      <polygon points="22,20 72,20 58,60 8,60" fill="#FFE4E6" stroke="#E11D48" stroke-width="2" />
+                    </svg>
+                    <div class="text-xs font-black text-rose-900">平行四邊形</div>
+                    <div class="text-xs font-extrabold text-rose-600">0 條（非對稱）</div>
+                  </div>
+                  <div class="bg-white p-2.5 rounded-xl border border-amber-200 col-span-2 sm:col-span-1">
+                    <svg viewBox="0 0 80 80" class="w-14 h-14 mx-auto">
+                      <circle cx="40" cy="40" r="26" fill="#FEF3C7" stroke="#D97706" stroke-width="2" />
+                      <line x1="40" y1="8" x2="40" y2="72" stroke="#DC2626" stroke-width="1.2" stroke-dasharray="3,2" />
+                      <line x1="8" y1="40" x2="72" y2="40" stroke="#DC2626" stroke-width="1.2" stroke-dasharray="3,2" />
+                      <line x1="17" y1="17" x2="63" y2="63" stroke="#DC2626" stroke-width="1.2" stroke-dasharray="3,2" />
+                      <line x1="63" y1="17" x2="17" y2="63" stroke="#DC2626" stroke-width="1.2" stroke-dasharray="3,2" />
+                    </svg>
+                    <div class="text-xs font-black text-amber-950">圓形</div>
+                    <div class="text-xs font-extrabold text-amber-700">無限多條！</div>
+                  </div>
+                </div>
+              </div>
+            `
+          },
+          {
+            badge: "概念 2：對稱點、對稱邊、對稱角與畫出另一半",
+            title: "對稱軸「垂直平分」對稱點的連線！數格子找對稱點最準確",
+            desc: "沿著對稱軸對折後，完全疊合的點叫「對稱點」、疊合的邊叫「對稱邊」、疊合的角叫「對稱角」。在方格紙或點格板上畫線對稱圖形的另一半時，先數出每個頂點到對稱軸有幾格，在對稱軸另一邊數「相同格數」標出對稱點，再用直線連起來！",
+            keyPoints: [
+              "【對稱邊與對稱角】對稱邊一定一樣長，對稱角一定一樣大。",
+              "【垂直且平分】把一對對稱點（例如點 B 和點 F）連起來，這條連線一定和對稱軸「互相垂直（90°）」，而且兩點到對稱軸的距離一樣長（BG ＝ FG）！"
+            ],
+            visualHtml: `
+              <div class="bg-orange-50/70 border-2 border-orange-200 rounded-2xl p-4">
+                <div class="text-xs font-black text-orange-950 mb-2">✏️ 方格紙與幾何性質圖解：對稱點連線與對稱軸「互相垂直且等距」</div>
+                <svg viewBox="0 0 360 155" class="w-full h-auto bg-white rounded-xl border border-amber-200 p-2">
+                  <!-- 背景方格 -->
+                  <g stroke="#FEF3C7" stroke-width="1">
+                    <line x1="60" y1="15" x2="60" y2="140" /><line x1="90" y1="15" x2="90" y2="140" />
+                    <line x1="120" y1="15" x2="120" y2="140" /><line x1="150" y1="15" x2="150" y2="140" />
+                    <line x1="180" y1="15" x2="180" y2="140" /><line x1="210" y1="15" x2="210" y2="140" />
+                    <line x1="240" y1="15" x2="240" y2="140" /><line x1="270" y1="15" x2="270" y2="140" />
+                    <line x1="300" y1="15" x2="300" y2="140" />
+                    <line x1="40" y1="25" x2="320" y2="25" /><line x1="40" y1="55" x2="320" y2="55" />
+                    <line x1="40" y1="85" x2="320" y2="85" /><line x1="40" y1="115" x2="320" y2="115" />
+                  </g>
+                  <!-- 對稱六邊形 A(180,25), B(90,55), C(120,115), D(180,135), E(240,115), F(270,55) -->
+                  <polygon points="180,25 90,55 120,115 180,135 240,115 270,55" fill="#FFFBEB" stroke="#D97706" stroke-width="2.5" />
+                  <!-- 對稱點連線 BF 與 CE -->
+                  <line x1="90" y1="55" x2="270" y2="55" stroke="#0D9488" stroke-width="2" stroke-dasharray="4,2" />
+                  <line x1="120" y1="115" x2="240" y2="115" stroke="#0D9488" stroke-width="2" stroke-dasharray="4,2" />
+                  <!-- 對稱軸 AD -->
+                  <line x1="180" y1="10" x2="180" y2="145" stroke="#DC2626" stroke-width="2.5" stroke-dasharray="5,3" />
+                  <!-- 直角記號 -->
+                  <polyline points="172,55 172,47 180,47" fill="none" stroke="#DC2626" stroke-width="1.5" />
+                  <polyline points="172,115 172,107 180,107" fill="none" stroke="#DC2626" stroke-width="1.5" />
+                  <!-- 頂點標示 -->
+                  <g font-size="11" font-weight="bold" fill="#78350F">
+                    <text x="185" y="22">A</text>
+                    <text x="75" y="58">B</text>
+                    <text x="276" y="58">F (B的對稱點)</text>
+                    <text x="105" y="120">C</text>
+                    <text x="246" y="120">E (C的對稱點)</text>
+                    <text x="185" y="143">D</text>
+                    <text x="184" y="68" fill="#DC2626" font-size="10">G</text>
+                    <text x="184" y="127" fill="#DC2626" font-size="10">H</text>
+                  </g>
+                  <text x="135" y="50" font-size="9" fill="#0F766E" text-anchor="middle" font-weight="bold">左 3 格 (BG)</text>
+                  <text x="225" y="50" font-size="9" fill="#0F766E" text-anchor="middle" font-weight="bold">右 3 格 (FG)</text>
+                </svg>
+              </div>
+            `
+          }
+        ],
+        formulas: [
+          { tag: "正多邊形鐵律", title: "正 N 邊形的對稱軸數量 ＝ N 條", text: "正三角形 3 條、正方形 4 條、正五邊形 5 條、正六邊形 6 條、正八邊形 8 條。" },
+          { tag: "對稱點連線性質", title: "對稱點連線 ⊥ 對稱軸，且兩邊等長", text: "若點 B 與點 F 是對稱點，交對稱軸於 G，則 BF 垂直對稱軸，且 BG ＝ FG（所以 BF ＝ BG × 2）。" },
+          { tag: "方格畫圖 3 步驟", title: "1.數格數 ➔ 2.點出對稱點 ➔ 3.連直線", text: "千萬不要憑感覺直接畫斜線！一定要先數原本頂點離對稱軸幾格，在對面點出對稱點再連起來。" },
+          { tag: "對折剪紙祕訣", title: "摺線就是「對稱軸」，展開圖形必對稱", text: "對折色紙沿虛線剪開時，連在摺線（對稱軸）上的部分展開後會在正中間連在一起（例如剪出「土」、「工」、「M」）。" }
+        ],
+        examples: [
+          {
+            tab: "範例 1：判斷對稱軸數量",
+            question: "有四個平面圖形：甲是菱形、乙是正方形、丙是長方形、丁是平行四邊形。請問哪兩個圖形「只有 2 條對稱軸」？",
+            steps: [
+              { title: "逐一分析四個圖形的對稱軸數量", detail: "甲（菱形）：沿兩條對角線對折可疊合 ➔ 2 條對稱軸。乙（正方形）：對邊中點連線 2 條＋對角線 2 條 ➔ 4 條對稱軸。" },
+              { title: "檢驗長方形與平行四邊形", detail: "丙（長方形）：對邊中點連線（直、橫）可疊合，對角線對折不會疊合 ➔ 2 條對稱軸。丁（平行四邊形）：怎麼摺都不會疊合 ➔ 0 條。" },
+              { title: "得出結論", detail: "只有 2 條對稱軸的是「甲（菱形）和丙（長方形）」。" }
+            ]
+          },
+          {
+            tab: "範例 2：對稱邊與對稱角計算",
+            question: "在線對稱圖形 ABCDE 中，以直線 FC 為對稱軸（F 在 AE 中間）。已知 AB＝21 公分、AF＝14 公分、∠A＝75°、∠BCD＝90°。請問對稱邊 ED、對稱角 ∠E 以及全部 AE 的長各是多少？",
+            steps: [
+              { title: "利用「對稱邊一樣長」求 ED 與 AE", detail: "沿 FC 對折，AB 與 ED 疊合，所以 ED ＝ AB ＝ 21 公分；AF 與 EF 疊合，所以 EF ＝ AF ＝ 14 公分，整條 AE ＝ 14 ＋ 14 ＝ 28 公分。" },
+              { title: "利用「對稱角一樣大」求 ∠E", detail: "沿 FC 對折，∠A 與 ∠E 疊合，所以 ∠E ＝ ∠A ＝ 75°。" },
+              { title: "得出結論", detail: "ED ＝ 21 公分，∠E ＝ 75°，AE ＝ 28 公分。" }
+            ]
+          },
+          {
+            tab: "範例 3：雙對稱軸八邊形推理",
+            question: "有一個長八邊形（如習作綜合篇第 5 題），同時有「直的（ㄐㄊ）」和「橫的（ㄇㄍ）」兩條對稱軸。已知左上角的斜邊 ㄅㄆ＝9 公分、∠ㄆ＝135°，請問右下角的斜邊 ㄉㄋ 是幾公分？∠ㄉ 是幾度？",
+            steps: [
+              { title: "先以直的對稱軸（左右對稱）思考", detail: "左上角的邊 ㄅㄆ 對折到右上角，對稱邊也是 9 公分；∠ㄆ（135°）對折過去也是 135°。" },
+              { title: "再以橫的對稱軸（上下對稱）思考", detail: "無論透過上下對稱或左右對稱，四個斜角對應的邊與角全都相等！" },
+              { title: "得出結論", detail: "ㄉㄋ ＝ 9 公分，∠ㄉ ＝ 135°。" }
+            ]
+          }
+        ],
+        quizzes: [
+          {
+            q: "下列哪一個平面圖形「不是」線對稱圖形（有 0 條對稱軸）？",
+            options: ["菱形", "等腰梯形", "平行四邊形"],
+            ans: 2,
+            exp: "平行四邊形不管沿著哪一條線對折，兩側都無法完全疊合，所以不是線對稱圖形！"
+          },
+          {
+            q: "關於「正多邊形」與「圓形」的對稱軸數量，下列敘述何者正確？",
+            options: ["正五邊形有 5 條對稱軸，圓形有無限多條對稱軸", "長方形有 4 條對稱軸，正六邊形有 6 條對稱軸", "正三角形只有 1 條對稱軸"],
+            ans: 0,
+            exp: "正幾邊形就有幾條對稱軸（正五邊形 5 條、正三角形 3 條）；長方形只有 2 條；圓形有無限多條！"
+          },
+          {
+            q: "在線對稱圖形中，點 C 和點 E 是一組對稱點，它們的連線 CE 與對稱軸相交於 H 點。已知 CH 長 5 公分，請問整條 CE 長幾公分？且 CE 和對稱軸有什麼關係？",
+            options: ["CE 長 5 公分，且和對稱軸互相平行", "CE 長 10 公分，且和對稱軸互相垂直", "CE 長 15 公分，且和對稱軸沒有垂直"],
+            ans: 1,
+            exp: "對稱軸會「垂直平分」對稱點的連線！所以 EH ＝ CH ＝ 5 公分，整條 CE ＝ 5 ＋ 5 ＝ 10 公分，且互相垂直。"
+          },
+          {
+            q: "在英文字母「 L 、 I 、 K 、 E 」中，屬於線對稱圖形的字母有幾個？",
+            options: ["1 個（只有 I）", "3 個（I、K、E）", "4 個全部都是"],
+            ans: 1,
+            exp: "「I」上下與左右皆對稱，「K」與「E」上下對折可完全疊合，只有「L」不是線對稱圖形，所以共 3 個！"
+          },
+          {
+            q: "將一張色紙對折後，在摺線處畫上「土」字的左半邊並沿虛線剪下來，請問把色紙打開後會出現什麼字？",
+            options: ["土", "工", "干"],
+            ans: 0,
+            exp: "因為對折處就是對稱軸，畫出「土」字的一半（上短橫、下長橫、中間連在摺線上），剪開展開後就會變成完整的「土」字！"
+          }
+        ]
+      }
+    ];
+
+    // 狀態管理
+    let currentUnitIndex = 0;
+    let currentExampleIndex = 0;
+    let fontScaleState = 0; // 0: 標準(1), 1: 加大(1.12), 2: 特大(1.25)
+    const answeredQuizzes = new Set(); // 記錄已答對的題目 key: "unitId-qIdx"
+
+    // 初始化
+    function initApp() {
+      renderUnitNav();
+      renderAllSections();
+      setupFontScaleButton();
+    }
+
+    // 字體縮放控制
+    function setupFontScaleButton() {
+      const btn = document.getElementById('btnFontScale');
+      const label = document.getElementById('fontScaleLabel');
+      const scales = [
+        { val: 1, text: "字體：標準" },
+        { val: 1.12, text: "字體：加大" },
+        { val: 1.24, text: "字體：特大" }
+      ];
+      btn.addEventListener('click', () => {
+        fontScaleState = (fontScaleState + 1) % scales.length;
+        document.documentElement.style.setProperty('--font-scale', scales[fontScaleState].val);
+        label.textContent = scales[fontScaleState].text;
+      });
+    }
+
+    // 渲染頂部單元切換按鈕
+    function renderUnitNav() {
+      const nav = document.getElementById('unitNav');
+      nav.innerHTML = UNITS_DATA.map((u, idx) => {
+        const active = idx === currentUnitIndex;
+        return `
+          <button type="button" onclick="selectUnit(${idx})"
+            class="flex items-center justify-center sm:justify-start gap-2 px-3.5 py-2.5 rounded-2xl font-black text-xs sm:text-sm transition-all border-2 ${
+              active
+                ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white border-orange-600 shadow-md scale-[1.02]'
+                : 'bg-white hover:bg-amber-100/80 text-amber-950 border-amber-200'
+            }">
+            <span class="text-lg">${u.icon}</span>
+            <div class="text-left leading-tight">
+              <div class="text-[10px] ${active ? 'text-amber-100' : 'text-amber-700'}">${u.code}</div>
+              <div class="truncate">${u.name}</div>
+            </div>
+          </button>
+        `;
+      }).join('');
+    }
+
+    // 切換單元
+    function selectUnit(idx) {
+      currentUnitIndex = idx;
+      currentExampleIndex = 0;
+      renderUnitNav();
+      renderAllSections();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 渲染當前單元所有區塊
+    function renderAllSections() {
+      const unit = UNITS_DATA[currentUnitIndex];
+
+      // 1. Hero 橫幅
+      document.getElementById('unitHero').innerHTML = `
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="space-y-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur text-xs font-black tracking-wide">
+              <span>${unit.icon} ${unit.code}</span>
+              <span>｜</span>
+              <span>五上數學核心總複習</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-black tracking-tight">${unit.code}：${unit.name}</h2>
+            <p class="text-amber-50 text-xs sm:text-sm font-medium max-w-3xl leading-relaxed">${unit.summary}</p>
+          </div>
+          <div class="bg-white/15 backdrop-blur rounded-2xl p-3.5 border border-white/25 text-xs space-y-1 shrink-0">
+            <div class="font-black text-amber-100">🎯 本單元學習目標：</div>
+            <div class="font-bold text-white max-w-xs">${unit.tagline}</div>
+          </div>
+        </div>
+      `;
+
+      // 2. 核心概念與圖解
+      document.getElementById('conceptContainer').innerHTML = unit.concepts.map(c => `
+        <div class="bg-amber-50/40 border-2 border-amber-200/80 rounded-2xl p-4 sm:p-6 space-y-4">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-3 py-1 rounded-full bg-amber-200/80 text-amber-950 font-black text-xs">${c.badge}</span>
+            <h3 class="scalable-title font-black text-amber-950">${c.title}</h3>
+          </div>
+          <p class="scalable-text text-stone-700 font-medium">${c.desc}</p>
+          <ul class="space-y-2 bg-white p-4 rounded-xl border border-amber-200">
+            ${c.keyPoints.map(kp => `
+              <li class="scalable-text flex items-start gap-2 text-stone-800 font-medium">
+                <span class="text-orange-500 font-black mt-0.5">✔</span>
+                <span>${kp}</span>
+              </li>
+            `).join('')}
+          </ul>
+          ${c.visualHtml}
+        </div>
+      `).join('');
+
+      // 3. 必背公式與口訣
+      document.getElementById('formulaContainer').innerHTML = unit.formulas.map((f, i) => `
+        <div class="bg-gradient-to-br from-amber-50/90 to-orange-50/70 border-2 border-amber-200 rounded-2xl p-4 sm:p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="px-2.5 py-0.5 rounded-lg bg-orange-500 text-white font-black text-xs">重點口訣 ${i + 1}</span>
+              <span class="text-xs font-bold text-amber-800">${f.tag}</span>
+            </div>
+            <div class="text-base sm:text-lg font-black text-amber-950 mb-2 bg-white px-3.5 py-2 rounded-xl border border-amber-200 shadow-sm">
+              ${f.title}
+            </div>
+            <p class="scalable-text text-stone-700 font-medium text-sm">${f.text}</p>
+          </div>
+        </div>
+      `).join('');
+
+      // 4. 經典範例拆解
+      renderExamples();
+
+      // 5. 單元自我小考驗
+      renderQuizzes();
+    }
+
+    // 渲染經典範例區
+    function renderExamples() {
+      const unit = UNITS_DATA[currentUnitIndex];
+      const tabsEl = document.getElementById('exampleTabs');
+      const boxEl = document.getElementById('exampleContainer');
+
+      tabsEl.innerHTML = unit.examples.map((ex, idx) => `
+        <button type="button" onclick="selectExample(${idx})"
+          class="px-3.5 py-1.5 rounded-xl font-black text-xs sm:text-sm transition border-2 ${
+            idx === currentExampleIndex
+              ? 'bg-amber-500 text-white border-amber-600 shadow-sm'
+              : 'bg-amber-50 hover:bg-amber-100 text-amber-900 border-amber-200'
+          }">
+          ${ex.tab}
+        </button>
+      `).join('');
+
+      const curEx = unit.examples[currentExampleIndex];
+      boxEl.innerHTML = `
+        <div class="bg-amber-50/50 border-2 border-amber-200 rounded-2xl p-4 sm:p-6 space-y-5">
+          <div class="bg-white p-4 rounded-xl border-l-4 border-orange-500 shadow-sm">
+            <div class="text-xs font-black text-orange-700 mb-1">📌 經典題目：</div>
+            <div class="scalable-text font-black text-stone-800">${curEx.question}</div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+            ${curEx.steps.map((st, sIdx) => `
+              <div class="bg-white border-2 border-amber-200 rounded-2xl p-4 flex flex-col justify-between relative overflow-hidden">
+                <div>
+                  <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 font-black text-xs mb-2">
+                    <span>STEP ${sIdx + 1}</span>
+                  </div>
+                  <h4 class="font-black text-amber-950 text-sm sm:text-base mb-1.5">${st.title}</h4>
+                  <p class="scalable-text text-stone-700 text-xs sm:text-sm font-medium leading-relaxed">${st.detail}</p>
+                </div>
+                <div class="mt-3 pt-2 border-t border-amber-100 text-right text-[11px] font-bold text-amber-700">
+                  思考步驟 ${sIdx + 1} / ${curEx.steps.length}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function selectExample(idx) {
+      currentExampleIndex = idx;
+      renderExamples();
+    }
+
+    // 渲染 5 題互動選擇題
+    function renderQuizzes() {
+      const unit = UNITS_DATA[currentUnitIndex];
+      const container = document.getElementById('quizContainer');
+
+      container.innerHTML = unit.quizzes.map((qz, qIdx) => {
+        const key = `${unit.id}-${qIdx}`;
+        const isDone = answeredQuizzes.has(key);
+        return `
+          <div class="bg-white border-2 ${isDone ? 'border-emerald-300 bg-emerald-50/20' : 'border-amber-200'} rounded-2xl p-4 sm:p-5 shadow-sm transition" id="quiz-card-${qIdx}">
+            <div class="flex items-start justify-between gap-2 mb-3">
+              <div class="flex items-start gap-2.5">
+                <span class="px-2.5 py-1 rounded-lg bg-amber-500 text-white font-black text-xs shrink-0 mt-0.5">第 ${qIdx + 1} 題</span>
+                <p class="scalable-text font-black text-stone-800">${qz.q}</p>
+              </div>
+              <span id="quiz-badge-${qIdx}" class="text-xs font-black px-2.5 py-1 rounded-full shrink-0 ${
+                isDone ? 'bg-emerald-100 text-emerald-800 border border-emerald-300' : 'bg-amber-100 text-amber-800'
+              }">
+                ${isDone ? '⭐ 已過關' : '挑戰中'}
+              </span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-3">
+              ${qz.options.map((opt, oIdx) => `
+                <button type="button" onclick="checkQuizAnswer(${qIdx}, ${oIdx})"
+                  id="quiz-btn-${qIdx}-${oIdx}"
+                  class="text-left p-3 rounded-xl border-2 border-amber-200 hover:border-orange-400 hover:bg-amber-50/70 font-bold text-xs sm:text-sm text-stone-800 transition flex items-start gap-2">
+                  <span class="w-5 h-5 rounded-full bg-amber-100 text-amber-900 flex items-center justify-center text-xs font-black shrink-0 mt-0.5">${oIdx + 1}</span>
+                  <span>${opt}</span>
+                </button>
+              `).join('')}
+            </div>
+            <div id="quiz-feedback-${qIdx}" class="mt-3 hidden"></div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 檢查選擇題答案並給予即時回饋
+    function checkQuizAnswer(qIdx, selectedIdx) {
+      const unit = UNITS_DATA[currentUnitIndex];
+      const qz = unit.quizzes[qIdx];
+      const feedbackEl = document.getElementById(`quiz-feedback-${qIdx}`);
+      const badgeEl = document.getElementById(`quiz-badge-${qIdx}`);
+      const cardEl = document.getElementById(`quiz-card-${qIdx}`);
+      const key = `${unit.id}-${qIdx}`;
+
+      // 重置該題按鈕樣式
+      qz.options.forEach((_, i) => {
+        const btn = document.getElementById(`quiz-btn-${qIdx}-${i}`);
+        btn.className = "text-left p-3 rounded-xl border-2 border-amber-200 hover:border-orange-400 hover:bg-amber-50/70 font-bold text-xs sm:text-sm text-stone-800 transition flex items-start gap-2";
+      });
+
+      const clickedBtn = document.getElementById(`quiz-btn-${qIdx}-${selectedIdx}`);
+      feedbackEl.classList.remove('hidden');
+
+      if (selectedIdx === qz.ans) {
+        clickedBtn.className = "text-left p-3 rounded-xl border-2 border-emerald-500 bg-emerald-50 font-black text-xs sm:text-sm text-emerald-950 transition flex items-start gap-2 shadow-sm";
+        feedbackEl.innerHTML = `
+          <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-950 text-xs sm:text-sm font-bold flex items-start gap-2">
+            <span class="text-lg">🎉</span>
+            <div>
+              <div class="font-black text-emerald-800 mb-0.5">太棒了！完全正確！</div>
+              <div>${qz.exp}</div>
+            </div>
+          </div>
+        `;
+        if (!answeredQuizzes.has(key)) {
+          answeredQuizzes.add(key);
+          document.getElementById('starCount').textContent = answeredQuizzes.size;
+        }
+        badgeEl.textContent = "⭐ 已過關";
+        badgeEl.className = "text-xs font-black px-2.5 py-1 rounded-full shrink-0 bg-emerald-100 text-emerald-800 border border-emerald-300";
+        cardEl.classList.remove('border-amber-200');
+        cardEl.classList.add('border-emerald-300');
+      } else {
+        clickedBtn.className = "text-left p-3 rounded-xl border-2 border-rose-400 bg-rose-50 font-bold text-xs sm:text-sm text-rose-950 transition flex items-start gap-2";
+        feedbackEl.innerHTML = `
+          <div class="p-3.5 rounded-xl bg-amber-100/80 border border-amber-300 text-amber-950 text-xs sm:text-sm font-bold flex items-start gap-2">
+            <span class="text-lg">💡</span>
+            <div>
+              <div class="font-black text-orange-800 mb-0.5">差一點點，再想一想喔！小提示：</div>
+              <div>${qz.exp}</div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // 重置本單元測驗
+    function resetUnitQuiz() {
+      const unit = UNITS_DATA[currentUnitIndex];
+      unit.quizzes.forEach((_, qIdx) => {
+        answeredQuizzes.delete(`${unit.id}-${qIdx}`);
+      });
+      document.getElementById('starCount').textContent = answeredQuizzes.size;
+      renderQuizzes();
+    }
+
+    // 啟動網頁
+    initApp();
+  </script>
+</body>
+</html>
